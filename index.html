@@ -261,7 +261,34 @@ ONWX-01
 
 </footer>
 
+<script>
 
+fetch("station_status.json")
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("status").innerHTML =
+    data.eas_active
+    ? "🚨 EAS ALERT ACTIVE"
+    : "🟢 " + data.status;
+
+
+    document.getElementById("nowplaying").innerHTML =
+    data.now_playing;
+
+
+    document.getElementById("updated").innerHTML =
+    "Last Updated: " + data.last_update;
+
+})
+
+.catch(error => {
+
+    console.log("Unable to load station status", error);
+
+});
+
+</script>
 
 </body>
 </html>
