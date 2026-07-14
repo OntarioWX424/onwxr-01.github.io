@@ -1,6 +1,11 @@
 {
-    "status": "Broadcasting Normally",
-    "now_playing": "ONWX Automated Weather Broadcast",
-    "eas_active": false,
-    "last_update": "July 13, 2026 12:30 AM"
+ "station":"ONWX-01",
+ "name":"Ontario Weather Network",
+ "status":"LIVE",
+ "program":"Hourly Weather Update",
+ "now_playing":"Forecast for York Region",
+ "stream_online":true,
+ "listeners":0,
+ "alert_level":"NORMAL",
+ "last_update":"..."
 }
