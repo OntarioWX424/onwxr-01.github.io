@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ONWX Control Room</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#061626;
+
+    color:white;
+
+}
+
+
+
+/* HEADER */
+
+
+header{
+
+    background:linear-gradient(135deg,#00152e,#003b73);
+
+    padding:30px;
+
+    text-align:center;
+
+    border-bottom:4px solid #00a6ff;
+
+}
+
+
+
+.logo{
+
+    font-size:45px;
+
+    font-weight:900;
+
+    letter-spacing:5px;
+
+}
+
+
+
+.subtitle{
+
+    color:#a8ddff;
+
+}
+
+
+
+
+/* DASHBOARD */
+
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:25px;
+
+}
+
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+/* CARDS */
+
+
+.card{
+
+    background:#0b2238;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 0 15px rgba(0,0,0,.4);
+
+    border-left:5px solid #00a6ff;
+
+}
+
+
+
+.card h2{
+
+    color:#8bd8ff;
+
+    margin-top:0;
+
+    font-size:20px;
+
+}
+
+
+
+/* STATUS */
+
+
+.online{
+
+    color:#00ff88;
+
+    font-weight:bold;
+
+}
+
+
+.offline{
+
+    color:#ff4444;
+
+    font-weight:bold;
+
+}
+
+
+
+.warning{
+
+    color:#ffd000;
+
+    font-weight:bold;
+
+}
+
+
+
+/* BIG STATUS */
+
+
+.main-status{
+
+    background:#003b73;
+
+    text-align:center;
+
+    border-left:0;
+
+}
+
+
+
+.main-status h1{
+
+    font-size:35px;
+
+}
+
+
+
+/* FOOTER */
+
+
+footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    opacity:.7;
+
+}
+
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<header>
+
+
+<div class="logo">
+
+ONWX
+
+</div>
+
+
+<h1>
+
+Control Room
+
+</h1>
+
+
+<p class="subtitle">
+
+Ontario Weather Network Operations Dashboard
+
+</p>
+
+
+</header>
+
+
+
+
+
+
+
+<div class="container">
+
+
+<div class="grid">
+
+
+
+
+
+<div class="card main-status">
+
+
+<h2>
+Station Status
+</h2>
+
+
+<h1 id="stationStatus">
+
+Loading...
+
+</h1>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+📻 Stream Monitor
+</h2>
+
+
+<p>
+
+Status:
+
+<span id="streamStatus">
+
+Loading...
+
+</span>
+
+</p>
+
+
+
+<p>
+
+Listeners:
+
+<span id="listeners">
+
+0
+
+</span>
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🎙 Broadcast Engine
+</h2>
+
+
+<p id="engine">
+
+Loading...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+⏱ System Uptime
+</h2>
+
+
+<p id="uptime">
+
+Loading...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+📡 Current Broadcast
+</h2>
+
+
+<p id="nowPlaying">
+
+Loading...
+
+</p>
+
+
+<p>
+
+Program:
+
+<br>
+
+<span id="program">
+
+Loading...
+
+</span>
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🚨 Alert System
+</h2>
+
+
+<p id="alerts">
+
+Loading...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🕒 Last Update
+</h2>
+
+
+<p id="updated">
+
+Loading...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🏷 Station ID
+</h2>
+
+
+<p id="stationID">
+
+Loading...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<footer>
+
+ONWX Control Room
+
+<br>
+
+Automated Weather Broadcasting Operations
+
+</footer>
+
+
+
+
+
+
+
+<script>
+
+
+async function loadControlRoom(){
+
+
+try{
+
+
+let response = await fetch(
+
+"station_status.json?time="+Date.now()
+
+);
+
+
+let data = await response.json();
+
+
+
+
+
+document.getElementById("stationStatus").innerHTML =
+
+"🟢 " + data.status;
+
+
+
+
+
+let stream=document.getElementById("streamStatus");
+
+
+
+if(data.stream_online){
+
+
+stream.innerHTML="ONLINE";
+
+stream.className="online";
+
+
+}
+
+else{
+
+
+stream.innerHTML="OFFLINE";
+
+stream.className="offline";
+
+
+}
+
+
+
+
+
+document.getElementById("listeners").innerHTML =
+
+data.listeners ?? 0;
+
+
+
+
+
+document.getElementById("engine").innerHTML =
+
+data.broadcast_engine;
+
+
+
+
+
+document.getElementById("uptime").innerHTML =
+
+data.uptime;
+
+
+
+
+
+document.getElementById("nowPlaying").innerHTML =
+
+data.now_playing;
+
+
+
+
+
+document.getElementById("program").innerHTML =
+
+data.program;
+
+
+
+
+
+let alert=document.getElementById("alerts");
+
+
+
+if(data.eas_active){
+
+
+alert.innerHTML="🚨 ACTIVE ALERT";
+
+alert.className="offline";
+
+
+}
+
+else{
+
+
+alert.innerHTML="🟢 Standby";
+
+alert.className="online";
+
+
+}
+
+
+
+
+
+document.getElementById("updated").innerHTML =
+
+data.last_update;
+
+
+
+
+
+document.getElementById("stationID").innerHTML =
+
+data.station;
+
+
+
+
+
+}
+
+
+catch(error){
+
+
+console.log(
+
+"Control Room unavailable",
+
+error
+
+);
+
+
+}
+
+
+
+}
+
+
+
+loadControlRoom();
+
+
+setInterval(loadControlRoom,5000);
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
