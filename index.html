@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ONWX - Ontario W X Weather Radio</title>
+<title>ONWX | Ontario Weather Network</title>
 
 <style>
 
@@ -18,7 +18,7 @@ body{
 
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
-    background:#e7f0fa;
+    background:#eef5fc;
     color:#222;
 
 }
@@ -28,8 +28,9 @@ body{
 
 header{
 
-    background:#002b55;
+    background:linear-gradient(135deg,#001b3a,#003b73);
     color:white;
+
     padding:30px;
     text-align:center;
 
@@ -40,31 +41,85 @@ header{
 
 .logo{
 
-    font-size:42px;
-    font-weight:bold;
-    letter-spacing:3px;
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:6px;
 
 }
 
 
 .subtitle{
 
-    font-size:18px;
-    margin-top:8px;
     color:#c9e8ff;
+    font-size:18px;
 
 }
 
 
 
-/* ALERT BANNER */
+/* LIVE BADGE */
+
+
+.live{
+
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    background:#00182f;
+
+    padding:8px 18px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+}
+
+
+.live-dot{
+
+    height:12px;
+    width:12px;
+
+    background:red;
+
+    border-radius:50%;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+
+@keyframes pulse{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+
+
+
+/* ALERT BAR */
+
 
 .alert-banner{
 
     background:#b00000;
+
     color:white;
 
-    padding:10px;
+    padding:12px;
 
     font-weight:bold;
 
@@ -79,7 +134,9 @@ header{
 
     display:inline-block;
 
-    animation:scroll 15s linear infinite;
+    white-space:nowrap;
+
+    animation:scroll 18s linear infinite;
 
 }
 
@@ -98,7 +155,8 @@ header{
 
 
 
-/* MAIN */
+/* CONTENT */
+
 
 .container{
 
@@ -111,28 +169,32 @@ header{
 }
 
 
+
 .card{
 
     background:white;
 
-    border-radius:12px;
+    border-radius:15px;
 
-    padding:22px;
+    padding:25px;
 
-    margin-bottom:22px;
+    margin-bottom:25px;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 
 }
 
 
+
 .card h2{
 
-    color:#002b55;
+    margin-top:0;
 
-    border-bottom:2px solid #00a6ff;
+    color:#003b73;
 
-    padding-bottom:8px;
+    border-bottom:3px solid #00a6ff;
+
+    padding-bottom:10px;
 
 }
 
@@ -140,17 +202,44 @@ header{
 
 /* STATUS */
 
+
+.status-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+    gap:15px;
+
+}
+
+
+
+.status-box{
+
+    background:#f4f9ff;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    border-left:5px solid #00a6ff;
+
+}
+
+
+
 .badge{
 
     display:inline-block;
 
-    padding:8px 16px;
+    padding:10px 18px;
 
-    border-radius:20px;
-
-    font-weight:bold;
+    border-radius:25px;
 
     color:white;
+
+    font-weight:bold;
 
 }
 
@@ -164,7 +253,7 @@ header{
 
 .eas{
 
-    background:#c00000;
+    background:#b00000;
 
 }
 
@@ -175,41 +264,35 @@ header{
 
 .now-playing{
 
-    background:#002b55;
+    background:linear-gradient(135deg,#002b55,#004d8f);
 
     color:white;
 
-    padding:20px;
+    padding:25px;
 
-    border-radius:10px;
+    border-radius:15px;
 
 }
 
 
 .now-playing h3{
 
+    color:#8bd8ff;
+
     margin-top:0;
 
-    color:#8bd8ff;
+    font-size:25px;
 
 }
 
+
+
+/* AUDIO */
 
 
 audio{
 
     width:100%;
-
-}
-
-
-
-/* LISTS */
-
-
-ul{
-
-    line-height:1.8;
 
 }
 
@@ -226,9 +309,10 @@ footer{
 
     text-align:center;
 
-    padding:20px;
+    padding:25px;
 
 }
+
 
 
 .small{
@@ -248,16 +332,19 @@ footer{
 
 .logo{
 
-    font-size:30px;
+    font-size:38px;
 
 }
 
 }
+
 
 
 </style>
 
+
 </head>
+
 
 
 <body>
@@ -265,6 +352,7 @@ footer{
 
 
 <header>
+
 
 <div class="logo">
 
@@ -275,19 +363,30 @@ ONWX
 
 <h1>
 
-Ontario W X Weather Radio
+Ontario Weather Network
 
 </h1>
 
 
 <p class="subtitle">
 
-Automated Weather Information Service
+Automated Weather Broadcasting System
 
 </p>
 
 
+<div class="live">
+
+<span class="live-dot"></span>
+
+LIVE
+
+</div>
+
+
 </header>
+
+
 
 
 
@@ -295,7 +394,7 @@ Automated Weather Information Service
 
 <span>
 
-🚨 ONWX EMERGENCY ALERT ACTIVE - PLEASE STAND BY FOR IMPORTANT INFORMATION 🚨
+🚨 ONWX EMERGENCY ALERT ACTIVE — PLEASE STAND BY FOR IMPORTANT INFORMATION 🚨
 
 </span>
 
@@ -304,13 +403,21 @@ Automated Weather Information Service
 
 
 
+
+
+
 <div class="container">
+
+
 
 
 
 <div class="card">
 
-<h2>Station Status</h2>
+
+<h2>
+📡 Station Status
+</h2>
 
 
 <p>
@@ -324,11 +431,48 @@ Automated Weather Information Service
 </p>
 
 
-<p>
 
-QuantumENDEC monitoring enabled.
+<div class="status-grid">
 
-</p>
+
+<div class="status-box">
+
+🟢 Stream Status
+
+<br>
+
+Online
+
+</div>
+
+
+
+<div class="status-box">
+
+🟢 Weather Data
+
+<br>
+
+Connected
+
+</div>
+
+
+
+<div class="status-box">
+
+🟢 Alert System
+
+<br>
+
+Ready
+
+</div>
+
+
+
+</div>
+
 
 
 </div>
@@ -337,22 +481,30 @@ QuantumENDEC monitoring enabled.
 
 
 
+
+
+
+
 <div class="card">
 
 
-<h2>🎧 Listen Live</h2>
+<h2>
+🎧 Listen Live
+</h2>
 
 
-<audio controls>
+<audio controls preload="none">
 
-<!-- ADD ICECAST STREAM URL HERE -->
+
+<!-- INSERT ICECAST STREAM URL HERE -->
+
 
 </audio>
 
 
 <p>
 
-Live Ontario W X Weather Radio audio stream.
+ONWX live internet weather radio stream.
 
 </p>
 
@@ -363,10 +515,16 @@ Live Ontario W X Weather Radio audio stream.
 
 
 
+
+
+
+
 <div class="card">
 
 
-<h2>📢 Now Playing</h2>
+<h2>
+🎙 Now Playing
+</h2>
 
 
 <div class="now-playing">
@@ -374,9 +532,10 @@ Live Ontario W X Weather Radio audio stream.
 
 <h3>
 
-Current Broadcast
+ONWX Broadcast
 
 </h3>
+
 
 
 <p id="nowPlaying">
@@ -386,6 +545,30 @@ Loading broadcast...
 </p>
 
 
+<p>
+
+Program:
+
+<span id="program">
+
+Automated Weather Update
+
+</span>
+
+</p>
+
+
+
+<p>
+
+Station:
+
+ONWX-01
+
+</p>
+
+
+
 <p id="updated">
 
 Loading update time...
@@ -393,10 +576,14 @@ Loading update time...
 </p>
 
 
+
 </div>
 
 
 </div>
+
+
+
 
 
 
@@ -406,18 +593,20 @@ Loading update time...
 <div class="card">
 
 
-<h2>🌦 Latest Products</h2>
+<h2>
+🌦 Weather Products
+</h2>
 
 
 <ul>
 
-<li>✓ Regional Weather Conditions</li>
+<li>Regional Weather Conditions</li>
 
-<li>✓ Marine Forecast</li>
+<li>Marine Forecast Information</li>
 
-<li>✓ Air Quality Health Index</li>
+<li>Air Quality Health Index</li>
 
-<li>✓ Severe Weather Information</li>
+<li>Severe Weather Alerts</li>
 
 </ul>
 
@@ -430,10 +619,14 @@ Loading update time...
 
 
 
+
+
 <div class="card">
 
 
-<h2>🚨 Alert Status</h2>
+<h2>
+🚨 Alert Status
+</h2>
 
 
 <p id="alertStatus">
@@ -451,46 +644,26 @@ No Active Alerts
 
 
 
-<div class="card">
-
-
-<h2>📜 Recent Alert History</h2>
-
-
-<ul>
-
-<li>No recent alerts</li>
-
-<li>Weekly RWT tests conducted by Ontario W X</li>
-
-
-</ul>
-
-
-</div>
-
-
-
-
-
 
 
 <div class="card">
 
 
-<h2>ℹ About ONWX</h2>
+<h2>
+ℹ About ONWX
+</h2>
 
 
 <p>
 
-Ontario W X Weather Radio is an independent automated weather information service providing weather, marine, and air quality information for Ontario.
+ONWX (Ontario Weather Network) is an independent automated weather information service providing weather, marine, air quality, and emergency information across Ontario.
 
 </p>
 
 
 <p>
 
-Ontario W X Weather Radio is not affiliated with Environment and Climate Change Canada or the Government of Canada.
+ONWX is not affiliated with Environment and Climate Change Canada or the Government of Canada.
 
 </p>
 
@@ -502,26 +675,25 @@ Ontario W X Weather Radio is not affiliated with Environment and Climate Change 
 
 
 
+
+
+
 <div class="card">
 
 
-<h2>📡 Coverage Area</h2>
+<h2>
+📡 Coverage Area
+</h2>
 
 
 <ul>
 
 <li>Toronto</li>
-
 <li>York Region</li>
-
 <li>Peel Region</li>
-
 <li>Durham Region</li>
-
 <li>Halton Region</li>
-
 <li>Dufferin County</li>
-
 <li>Simcoe County</li>
 
 </ul>
@@ -532,7 +704,11 @@ Ontario W X Weather Radio is not affiliated with Environment and Climate Change 
 
 
 
+
+
 </div>
+
+
 
 
 
@@ -541,11 +717,7 @@ Ontario W X Weather Radio is not affiliated with Environment and Climate Change 
 <footer>
 
 
-<p>
-
-Ontario W X Weather Radio
-
-</p>
+ONWX — Ontario Weather Network
 
 
 <p class="small">
@@ -554,12 +726,14 @@ Station ID: ONWX-01
 
 <br>
 
-Automated Weather Information Service
+Automated Weather Broadcasting System
 
 </p>
 
 
 </footer>
+
+
 
 
 
@@ -576,9 +750,7 @@ try{
 
 
 let response = await fetch(
-
-"station_status.json?time=" + Date.now()
-
+"station_status.json?time="+Date.now()
 );
 
 
@@ -586,9 +758,9 @@ let data = await response.json();
 
 
 
-let badge = document.getElementById("statusBadge");
+let badge=document.getElementById("statusBadge");
 
-let banner = document.getElementById("alertBanner");
+let banner=document.getElementById("alertBanner");
 
 
 
@@ -598,7 +770,6 @@ if(data.eas_active){
 badge.className="badge eas";
 
 badge.innerHTML="🚨 EAS ALERT ACTIVE";
-
 
 banner.style.display="block";
 
@@ -612,7 +783,6 @@ badge.className="badge normal";
 
 badge.innerHTML="🟢 Broadcasting Normally";
 
-
 banner.style.display="none";
 
 
@@ -620,15 +790,19 @@ banner.style.display="none";
 
 
 
-document.getElementById("nowPlaying").innerHTML=
+document.getElementById("nowPlaying").innerHTML=data.now_playing;
 
-data.now_playing;
 
+if(data.program){
+
+document.getElementById("program").innerHTML=data.program;
+
+}
 
 
 document.getElementById("updated").innerHTML=
 
-"Last Updated: " + data.last_update;
+"Last Updated: "+data.last_update;
 
 
 
@@ -637,15 +811,13 @@ document.getElementById("updated").innerHTML=
 
 catch(error){
 
-
 console.log(
 
-"Unable to load station data",
+"Station data unavailable",
 
 error
 
 );
-
 
 }
 
