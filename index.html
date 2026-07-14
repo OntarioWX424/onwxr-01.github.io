@@ -1,119 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ontario W X Weather Radio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #eef5ff;
-            margin: 0;
-            color: #222;
-        }
+<title>Ontario W X Weather Radio</title>
 
-        header {
-            background-color: #0057b8;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+<style>
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+body{
 
-        header p {
-            margin-top: 8px;
-            font-size: 18px;
-        }
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
 
-        .container {
-            max-width: 900px;
-            margin: 25px auto;
-            padding: 15px;
-        }
+    background:#eaf2fb;
+    color:#222;
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
-        }
+}
 
-        .status {
-            color: green;
-            font-weight: bold;
-        }
+header{
 
-        .alert {
-            color: red;
-            font-weight: bold;
-        }
+    background:#0057b8;
+    color:white;
 
-        h2 {
-            color: #0057b8;
-        }
+    padding:30px;
 
-        ul {
-            line-height: 1.8;
-        }
+    text-align:center;
 
-        audio {
-            width: 100%;
-        }
+}
 
-        footer {
-            background-color: #0057b8;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-        }
+header h1{
 
-        .station-id {
-            font-size: 14px;
-            opacity: 0.8;
-        }
+    margin:0;
 
-    </style>
+    font-size:40px;
+
+}
+
+header p{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+}
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:25px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+.card h2{
+
+    margin-top:0;
+
+    color:#0057b8;
+
+}
+
+.status{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.alert{
+
+    color:#d60000;
+
+    font-weight:bold;
+
+}
+
+audio{
+
+    width:100%;
+
+}
+
+footer{
+
+    background:#0057b8;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.station-id{
+
+    opacity:.8;
+
+    font-size:14px;
+
+}
+
+</style>
+
 </head>
-
 
 <body>
 
-
 <header>
 
-    <h1>Ontario W X Weather Radio</h1>
+<h1>Ontario W X Weather Radio</h1>
 
-    <p>Automated Weather Information Service</p>
+<p>Automated Weather Information Service</p>
 
 </header>
 
-
 <div class="container">
-
 
 <div class="card">
 
 <h2>Station Status</h2>
 
-<p class="status">
-Loading Status...
+<p class="status" id="status">
+
+Loading status...
+
 </p>
 
 <p>
+
 QuantumENDEC monitoring enabled.
+
 </p>
 
 </div>
-
-
 
 <div class="card">
 
@@ -121,35 +161,35 @@ QuantumENDEC monitoring enabled.
 
 <audio controls>
 
-    <!-- Public Icecast URL will go here -->
-
-    Your browser does not support audio.
+<!-- Icecast stream goes here -->
 
 </audio>
 
 <p>
+
 Live audio stream temporarily unavailable.
+
 </p>
 
 </div>
-
-
 
 <div class="card">
 
 <h2>📢 Now Playing</h2>
 
-<p id="updated">
-Loading update time...
-</p>
-
 <p id="nowplaying">
+
 Loading broadcast...
+
 </p>
 
-<p>
-Latest products:
+<p id="updated">
+
+Loading update...
+
 </p>
+
+<h3>Latest Products</h3>
 
 <ul>
 
@@ -163,9 +203,6 @@ Latest products:
 
 </div>
 
-
-
-
 <div class="card">
 
 <h2>🚨 Alert Status</h2>
@@ -178,13 +215,9 @@ No Active Alerts
 
 </div>
 
-
-
-
 <div class="card">
 
 <h2>📜 Recent Alert History</h2>
-
 
 <ul>
 
@@ -194,16 +227,11 @@ No Active Alerts
 
 </ul>
 
-
 </div>
-
-
-
 
 <div class="card">
 
 <h2>ℹ About ONWX</h2>
-
 
 <p>
 
@@ -211,26 +239,17 @@ Ontario W X Weather Radio is an independent automated weather information servic
 
 </p>
 
-
 <p>
 
 Ontario W X Weather Radio is not affiliated with Environment and Climate Change Canada or the Government of Canada.
 
 </p>
 
-
 </div>
-
-
-
 
 <div class="card">
 
 <h2>📡 Coverage Area</h2>
-
-
-<p>Serving:</p>
-
 
 <ul>
 
@@ -244,55 +263,59 @@ Ontario W X Weather Radio is not affiliated with Environment and Climate Change 
 
 </ul>
 
-
 </div>
 
-
-
 </div>
-
-
 
 <footer>
 
-<p>
-Ontario W X Weather Radio
-</p>
+<p>Ontario W X Weather Radio</p>
 
 <p class="station-id">
+
 ONWX-01
+
 </p>
 
 </footer>
 
 <script>
 
-fetch("station_status.json")
-.then(response => response.json())
-.then(data => {
+async function updateStatus(){
 
-    document.getElementById("status").innerHTML =
-    data.eas_active
-    ? "🚨 EAS ALERT ACTIVE"
-    : "🟢 " + data.status;
+    try{
 
+        const response = await fetch("station_status.json?nocache=" + Date.now());
 
-    document.getElementById("nowplaying").innerHTML =
-    data.now_playing;
+        const data = await response.json();
 
+        document.getElementById("status").innerHTML =
+            data.eas_active
+            ? "🚨 EAS ALERT ACTIVE"
+            : "🟢 " + data.status;
 
-    document.getElementById("updated").innerHTML =
-    "Last Updated: " + data.last_update;
+        document.getElementById("nowplaying").innerHTML =
+            data.now_playing;
 
-})
+        document.getElementById("updated").innerHTML =
+            "Last Updated: " + data.last_update;
 
-.catch(error => {
+    }
 
-    console.log("Unable to load station status", error);
+    catch(error){
 
-});
+        console.log(error);
+
+    }
+
+}
+
+updateStatus();
+
+setInterval(updateStatus,5000);
 
 </script>
 
 </body>
+
 </html>
